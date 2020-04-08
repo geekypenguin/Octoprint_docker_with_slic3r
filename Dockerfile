@@ -78,9 +78,9 @@ RUN apt-get clean \
 
 
 WORKDIR /
-RUN git clone "https://github.com/alexrj/Slic3r.git" /Slic3r \
-	&& cd /Slic3r \
-	&& git checkout "master"
+RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 https://github.com/slic3r/Slic3r/archive/master.zip 
+	&& unzip master.zip -d /Slic3r/
+	&& cd /Slic3r
 #sudo perl Build.PL
 RUN perl Build.PL
 
