@@ -78,9 +78,9 @@ RUN apt-get clean \
 
 
 WORKDIR /
-SLIC3R_REPO="https://github.com/alexrj/Slic3r.git"
-SLIC3R_VERSION="master"
-SLIC3R_DIR=/Slic3r
+ARG SLIC3R_REPO="https://github.com/alexrj/Slic3r.git"
+ARG SLIC3R_VERSION="master"
+ARG SLIC3R_DIR=/Slic3r
 git clone ${SLIC3R_REPO} ${SLIC3R_DIR}
 cd ${SLIC3R_DIR}
 git checkout ${SLIC3R_VERSION}
