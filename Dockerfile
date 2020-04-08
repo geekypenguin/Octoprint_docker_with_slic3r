@@ -48,9 +48,39 @@ ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /opt/venv
 RUN python setup.py install
 
-#install slic3r
+#install slic3r plugin
 RUN echo "Installing Slic3r plugin..."
 RUN pip install https://github.com/javierma/OctoPrint-Slic3r/archive/master.zip
+
+# Install Slic3r Base 
+ARG SLIC3R_VERSION=1.3.0
+
+RUN echo "The installation of Slic3r takes a long time. PLease be patient"
+RUN echo "Installing libraries and dependencies required by Slic3r..."
+RUN apt-get install --yes --no-install-recommends \
+    libboost-all-dev \
+    libboost-geometry-utils-perl \
+    libboost-system-dev \
+    libboost-thread-dev \
+    libgtk2.0-dev \
+    libwxgtk2.8-dev \
+    libwx-perl \
+    libmodule-build-perl \
+    libnet-dbus-perl \
+    cpanminus \
+    libextutils-cbuilder-perl \
+    libwx-perl \
+    libperl-dev
+
+RUN apt-get clean \
+	&& rm -rf /tmp/* /var/tmp/*  \
+    && rm -rf /var/lib/apt/lists/*
+
+
+WORKDIR /
+COPY build_slic3r.sh /build_slic3r.sh
+RUN echo "Building and testing Scli3r..."
+RUN /build_slic3r.sh
 
 
 FROM python:${PYTHON_BASE_IMAGE} AS build
