@@ -82,9 +82,9 @@ WORKDIR /
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 https://github.com/slic3r/Slic3r/archive/master.zip 
 RUN mkdir /Slic3r \
 	&& unzip master.zip -d /Slic3r/
-RUN cd /Slic3r/Slic3r-master/
+RUN perl /Slic3r/Slic3r-master/Build.PL
 #sudo perl Build.PL
-RUN perl Build.PL
+
 
 FROM python:${PYTHON_BASE_IMAGE} AS build
 LABEL description="The snappy web interface for your 3D printer"
