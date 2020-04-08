@@ -63,7 +63,7 @@ RUN apt-get install --yes --no-install-recommends \
     libboost-system-dev \
     libboost-thread-dev \
     libgtk2.0-dev \
-    libwxgtk2.8-dev \
+    libwxgtk3.0-0 \
     libwx-perl \
     libmodule-build-perl \
     libnet-dbus-perl \
