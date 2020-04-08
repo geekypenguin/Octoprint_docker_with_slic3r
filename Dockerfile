@@ -82,7 +82,7 @@ WORKDIR /
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 https://github.com/slic3r/Slic3r/archive/master.zip 
 RUN mkdir /Slic3r \
 	&& unzip master.zip -d /Slic3r/
-RUN cd /Slic3r
+RUN cd /Slic3r/master/
 #sudo perl Build.PL
 RUN perl Build.PL
 
