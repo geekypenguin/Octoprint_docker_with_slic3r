@@ -48,6 +48,10 @@ ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /opt/venv
 RUN python setup.py install
 
+#install slic3r
+RUN echo "Installing Slic3r plugin..."
+RUN pip install https://github.com/javierma/OctoPrint-Slic3r/archive/master.zip
+
 
 FROM python:${PYTHON_BASE_IMAGE} AS build
 LABEL description="The snappy web interface for your 3D printer"
