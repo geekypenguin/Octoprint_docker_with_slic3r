@@ -78,10 +78,14 @@ RUN apt-get clean \
 
 
 WORKDIR /
-COPY build_slic3r.sh /build_slic3r.sh
-RUN echo "Building and testing Scli3r..."
-RUN /build_slic3r.sh
-
+SLIC3R_REPO="https://github.com/alexrj/Slic3r.git"
+SLIC3R_VERSION="master"
+SLIC3R_DIR=/Slic3r
+git clone ${SLIC3R_REPO} ${SLIC3R_DIR}
+cd ${SLIC3R_DIR}
+git checkout ${SLIC3R_VERSION}
+#sudo perl Build.PL
+perl Build.PL
 
 FROM python:${PYTHON_BASE_IMAGE} AS build
 LABEL description="The snappy web interface for your 3D printer"
