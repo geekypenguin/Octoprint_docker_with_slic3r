@@ -70,7 +70,8 @@ RUN apt-get install --yes --no-install-recommends \
     cpanminus \
     libextutils-cbuilder-perl \
     libwx-perl \
-    libperl-dev
+    libperl-dev \
+    unzip
 
 RUN apt-get clean \
 	&& rm -rf /tmp/* /var/tmp/*  \
