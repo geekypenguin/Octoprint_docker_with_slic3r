@@ -71,7 +71,9 @@ RUN apt-get install --yes --no-install-recommends \
     libextutils-cbuilder-perl \
     libwx-perl \
     libperl-dev \
-    unzip
+    unzip \
+    libxml-sax-expatxs-perl \
+    libclass-xsaccessor-perl
 
 RUN apt-get clean \
 	&& rm -rf /tmp/* /var/tmp/*  \
